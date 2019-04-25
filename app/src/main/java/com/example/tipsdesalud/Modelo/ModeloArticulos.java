@@ -50,29 +50,46 @@ static {
 
 
     agregarItem(new Articulo(generarId(),
-            "",
-            "",
+            "Combina  Cardio + Fuerza Para Obtener Verdaderos Resultados",
+            "Muchos creen que solo realizar ejercicios de cardio los hará perder de peso y...",
             "16 de Enero","http://www.puntosingular.mx/imagenesarticulo7.jpg"));
 
 
     agregarItem(new Articulo(generarId(),
-            "",
-            "",
+            "Planificador Semanal Para Optimizar Tu Dieta",
+            "Descarga nuestra nueva plantilla para prácticar buenos hábitos alimenticios. Se trata de...",
             "17 de Enero","http://www.puntosingular.mx/imagenesarticulo8.jpg"));
 
 
     agregarItem(new Articulo(generarId(),
-            "",
-            "",
+            "Las 30 Razones De Por Que Superman Come Cacahuates ",
+            "Los frutos secos han sido desde la antiguedad la principal fuente de  proteínas para muchas civilizaciones...",
             "18 de Enero","http://www.puntosingular.mx/imagenesarticulo9.jpg"));
+   }
 
+   @NonNull
+   private static String generarId(){
+    return UUID.randomUUID().toString();
+   }
 
+   private static void agregarItem(Articulo item){
+    ITEMS.add(item);
+    MAPA_ITEMS.put(item.id, item);
+   }
 
+   public static class Articulo {
+       public final String id;
+       public final String titulo;
+       public final String descripcion;
+       public final String fecha;
+       public final String urlMiniatura;
 
-
-}
-
-
-
-
+       public Articulo(String id, String titulo, String descripcion, String fecha, String urlMiniatura){
+           this.id = id;
+           this.titulo = titulo;
+           this.descripcion = descripcion;
+           this.fecha = fecha;
+           this.urlMiniatura = urlMiniatura;
+       }
+    }
 }
