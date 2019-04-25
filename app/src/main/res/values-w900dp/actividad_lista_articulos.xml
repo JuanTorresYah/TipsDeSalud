@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<element xmlns="http://www.w3.org/1999/XSL/Transform" name="articulos">
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
@@ -17,15 +17,36 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:gravity="center_vertical"
             app:popupTheme="@style/AppTheme.PopupOverlay" >
 
+         <ImageView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="320dp"
+             android:layout_marginStart="320dp"
+             android:src="@drawable/icono_busqueda"/>
         </android.support.v7.widget.Toolbar>
+
     </android.support.design.widget.AppBarLayout>
 
     <FrameLayout
         android:id="@+id/contenedor_lista"
+        android:layout_width="@dimen/ancho_panel_lista"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:background="@android:color/white"/>
+
+    <FrameLayout
+        android:id="@+id/contenedor_detalle_articulo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@String/appbar_scrolling_view_behavior"/>
+        android:layout_marginLeft="@dimen/ancho_panel_lista"
+        android:layout_toRightOf="@+id/contenedor_lista"
+        android:background="@android:color/white"
+        android:elevation="8dp"/>
+
+
 
 </android.support.design.widget.CoordinatorLayout>
+</element>
