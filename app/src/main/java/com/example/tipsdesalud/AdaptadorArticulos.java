@@ -10,10 +10,9 @@ import android.widget.TextView;
 
 
 import com.bumptech.glide.Glide;
-import com.example.tipsdesalud.Modelo.ModeloArticulos;
+import com.example.tipsdesalud.modelo.ModeloArticulos;
 
 import java.util.List;
-
 
 
 public class AdaptadorArticulos extends RecyclerView.Adapter<AdaptadorArticulos.ViewHolder>{

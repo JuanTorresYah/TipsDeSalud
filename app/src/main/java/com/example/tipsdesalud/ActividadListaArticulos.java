@@ -1,32 +1,65 @@
 package com.example.tipsdesalud;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class ActividadListaArticulos extends AppCompatActivity {
+import com.example.tipsdesalud.modelo.ModeloArticulos;
+
+public class ActividadListaArticulos extends AppCompatActivity implements FragmentoListaArticulos.EscuchaFragmento{
+
+    private boolean dosPaneles;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actividad_lista_articulos);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        ((Toolbar) findViewById(R.id.toolbar)).setTitle(getTitle());
+
+        if (findViewById(R.id.contenedor_detalle_articulo) != null){
+
+            dosPaneles = true;
+
+            cargarFragmentoDetalle(ModeloArticulos.ITEMS.get(0).id);
+        }
+
+
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_lista, FragmentoListaArticulos.crear()).commit();
+
     }
+
+    private void cargarFragmentoDetalle(String id){
+        Bundle arguments = new Bundle();
+
+        arguments.putString(FragmentoDetalleArticulo.ID_ARTICULO, id);
+        FragmentoDetalleArticulo fragment = new FragmentoDetalleArticulo();
+        fragment.setArguments(arguments);
+        getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_detalle_articulo, fragment).commit();
+    }
+
+
+    @Override
+    public void alSeleccionarItem(String idArticulo){
+
+        if (dosPaneles){
+            cargarFragmentoDetalle(idArticulo);
+        }else {
+            Intent intent = new Intent(this, ActividadDetalleArticulo.class);
+            intent.putExtra(FragmentoDetalleArticulo.ID_ARTICULO, idArticulo);
+
+        startActivity(intent);
+
+        }
+
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -50,3 +83,4 @@ public class ActividadListaArticulos extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+

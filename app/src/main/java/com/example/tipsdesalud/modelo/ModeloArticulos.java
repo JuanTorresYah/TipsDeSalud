@@ -1,4 +1,4 @@
-package com.example.tipsdesalud.Modelo;
+package com.example.tipsdesalud.modelo;
 
 import android.support.annotation.NonNull;
 
